@@ -5,5 +5,5 @@ Practical code excercise
 ### directory layout
 
     .
-    ├── airflow docker                  						# source files
+    ├── airflow docker                  						# Airflow + postgress docker container configuration
     		

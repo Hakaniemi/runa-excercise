@@ -4,5 +4,8 @@ Practical code excercise
 
 ### directory layout
 
-  .
-    ├── airflow_docker                   						# Airflow + postgress docker container
+    .
+    ├── src/main/resources                   						# source files
+    		├── archetype-resources
+    				├── src
+    					├── dockerairflow_docker                   						# Airflow + postgress docker container

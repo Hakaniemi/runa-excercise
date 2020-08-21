@@ -13,13 +13,13 @@ timestr = time.strftime("%Y%m%d-%H_%M")
 
 dag = DAG(
    dag_id="etl_timeseries",
-   start_date=datetime(2020, 7, 1),
-   schedule_interval='0 * * * *', 
+   start_date=datetime(2020, 8, 21),
+   schedule_interval='@hourly', 
 )
  
 #fetch time series json data from URL 
 extract= BashOperator(
-   task_id="fetch_timeseries",
+   task_id="extract",
    bash_command='curl -o /opt/airflow/files/timeseries_{timestamp}.json https://pomber.github.io/covid19/timeseries.json'.format(timestamp=timestr),
    dag=dag,
 )
@@ -34,7 +34,7 @@ def parse_json(input_path, output_path):
 ## task definition 
 ## 
 transform_load = PythonOperator(
-   task_id="read_json",
+   task_id="transform_load",
    python_callable=parse_json,
    op_kwargs={
        "input_path": "/opt/airflow/files/timeseries_{timestamp}.json".format(timestamp=timestr),
